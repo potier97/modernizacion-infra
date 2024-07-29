@@ -7,6 +7,8 @@ se ejecuta la modernización del software de acuerdo al diseño propuesto.
 
 Sistema Legado: [Punto Venta](https://github.com/CristianAAV/MISW-4410-Modernizacion)
 
+Video Explicativo: [Modernización](https://youtu.be/z8Lcejq1Nhg)
+
 
 ## Principales comnados
 
