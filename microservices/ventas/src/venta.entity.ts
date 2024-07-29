@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'ventas', schema: 'public' })
 export class Venta {
   @PrimaryGeneratedColumn()
   id: number;
@@ -14,7 +14,7 @@ export class Venta {
   @Column()
   vendedor: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column('decimal')
   total: number;
 
   @Column()

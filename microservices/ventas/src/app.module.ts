@@ -6,12 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SQSClient } from '@aws-sdk/client-sqs';
 import { SqsModule } from '@ssut/nestjs-sqs';
-
-console.log('process.env.DB_HOST', process.env.DB_HOST);
-console.log('process.env.DB_PORT', process.env.DB_PORT);
-console.log('process.env.DB_USERNAME', process.env.DB_USERNAME);
-console.log('process.env.DB_PASSWORD', process.env.DB_PASSWORD);
-console.log('process.env.DB_NAME', process.env.DB_NAME);
+import { Productos } from './productos.entity';
 
 @Module({
   imports: [
@@ -31,43 +26,29 @@ console.log('process.env.DB_NAME', process.env.DB_NAME);
         ssl: {
           rejectUnauthorized: false,
         },
-        entities: [Venta],
+        entities: [Venta, Productos],
         retryDelay: 3000,
         retryAttempts: 5,
       }),
     }),
-    TypeOrmModule.forFeature([Venta]),
+    TypeOrmModule.forFeature([Venta, Productos]),
     SqsModule.register({
       consumers: [
         {
           name: 'inventarioQueue',
-          queueUrl: 'https://sqs.us-east-1.amazonaws.com/010438488420/windows_to_inventory_queue_name',
-          region: 'us-east-1',
+          queueUrl: process.env.INVENTORY_QUEUE_URL,
+          region: process.env.AWS_REGION,
           batchSize: 1,
           sqs: new SQSClient({
-            region: 'us-east-1',
+            region: process.env.AWS_REGION,
             credentials: {
-              accessKeyId: 'AKIAQE3ROWFSPH4SCOV4',
-              secretAccessKey: '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',
+              accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+              secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
             },
           }),
         },
       ],
-      producers: [
-        {
-          name: 'inventarioQueue',
-          queueUrl: 'https://sqs.us-east-1.amazonaws.com/010438488420/windows_to_inventory_queue_name',
-          region: 'us-east-1',
-          batchSize: 1,
-          sqs: new SQSClient({
-            region: 'us-east-1',
-            credentials: {
-              accessKeyId: 'AKIAQE3ROWFSPH4SCOV4',
-              secretAccessKey: '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',
-            },
-          }),
-        },
-      ],
+      producers: [],
     }),
   ],
   controllers: [AppController],
