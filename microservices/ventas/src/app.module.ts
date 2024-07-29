@@ -41,19 +41,33 @@ console.log('process.env.DB_NAME', process.env.DB_NAME);
       consumers: [
         {
           name: 'inventarioQueue',
-          queueUrl: process.env.INVENTARIO_QUEUE_URL,
-          region: process.env.AWS_REGION,
+          queueUrl: 'https://sqs.us-east-1.amazonaws.com/010438488420/windows_to_inventory_queue_name',
+          region: 'us-east-1',
           batchSize: 1,
           sqs: new SQSClient({
-            region: process.env.AWS_REGION,
+            region: 'us-east-1',
             credentials: {
-              accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-              secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+              accessKeyId: 'AKIAQE3ROWFSPH4SCOV4',
+              secretAccessKey: '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',
             },
           }),
         },
       ],
-      producers: [],
+      producers: [
+        {
+          name: 'inventarioQueue',
+          queueUrl: 'https://sqs.us-east-1.amazonaws.com/010438488420/windows_to_inventory_queue_name',
+          region: 'us-east-1',
+          batchSize: 1,
+          sqs: new SQSClient({
+            region: 'us-east-1',
+            credentials: {
+              accessKeyId: 'AKIAQE3ROWFSPH4SCOV4',
+              secretAccessKey: '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',
+            },
+          }),
+        },
+      ],
     }),
   ],
   controllers: [AppController],

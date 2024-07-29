@@ -5,6 +5,9 @@ Infra del aplicativo (Sistema Ventas) en AWS usando TerraForm (IaC)
 se ejecuta la modernización del software de acuerdo al diseño propuesto.
 
 
+Sistema Legado: [Punto Venta](https://github.com/CristianAAV/MISW-4410-Modernizacion)
+
+
 ## Principales comnados
 
  - Iniciar el Proyecto 
@@ -34,3 +37,16 @@ se ejecuta la modernización del software de acuerdo al diseño propuesto.
    - terraform destroy -var-file /pat/to/file -auto-approve
 
 
+# **Dioagrama Despliegue**
+![alt text](assets/image-2.png)
+
+
+# **Arquitectura de Infraestructura**
+
+![alt text](assets/image-3.png)
+
+
+# **Base de datos Esquema**
+Base de datos desplegada para el proyecto.
+
+![alt text](assets/image.png)
