@@ -27,6 +27,9 @@ Video Explicativo: [Modernización](https://youtu.be/z8Lcejq1Nhg)
  - Destruir los cambios y enviar infra
    - terraform destroy
 
+- Pasar otra cuenta de AWS
+  - export AWS_PROFILE=<profile>
+
  - Imprimir salida de variables
    - terraform output -json <variable>
   
